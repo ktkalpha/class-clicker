@@ -15,7 +15,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [gc, setGC] = useState("");
   const db = getFirestore(firebase);
-  const [clsc, setClsc] = useState([]);
+  const [clsc, setClsc] = useState<Array<string>[]>([]);
   async function getClick(db: any, grade: number) {
     const clickCol = collection(db, "click");
     const clickSnap = await getDocs(clickCol);
@@ -52,7 +52,6 @@ function App() {
     setGC(e.target.value);
     getClick(db, Number(e.target.value.slice(0, 1))).then((r) => {
       setCount(r[e.target.value]);
-      console.log(r);
     });
   }
   return (
